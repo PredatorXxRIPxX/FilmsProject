@@ -5,21 +5,41 @@ const allMoviez = document.getElementById('allMoviez');
 const btn_left= document.getElementById('btn_left')
 const btn_right = document.getElementById('btn_right')
 let searchBar = document.getElementById('searchBar')
+let items = document.querySelectorAll('.show')
+let slides = items.length-1;
+let count = 0;
+console.log(slides)
+
+let currentSlide = 0;
+
+// Update the function to handle showing slides
+function showSlide() {
+    items.forEach((item, index) => {
+        if (index === currentSlide) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+// Update the left button event listener
+btn_left.addEventListener('click', () => {
+    if (currentSlide > 0) {
+        currentSlide--;
+        showSlide();
+    }
+});
+
+// Update the right button event listener
+btn_right.addEventListener('click', () => {
+    if (currentSlide < slides) {
+        currentSlide++;
+        showSlide();
+    }
+});
 
 
-btn_left.addEventListener('click',()=>{
-  main_show.scrollBy({
-    right: main_show.clientWidth,
-    behavior: "smooth"
-  })
-})
-
-btn_right.addEventListener('click',()=>{
-  main_show.scrollBy({
-    left: +main_show.clientWidth,
-    behavior: 'smooth',
-  })
-})
 
 
 searchBar.addEventListener('keyup',()=>{
@@ -34,19 +54,6 @@ searchBar.addEventListener('keyup',()=>{
   }
 })
 
-
-btn_left.addEventListener('click',function(){
-  main_show.scrollBy({
-    left: main_show.clientWidth,
-    behavior:"smooth",
-  })
-})
-btn_right.addEventListener('click',function(){
-  main_show.scrollBy({
-    right: main_show.clientWidth,
-    behavior:"smooth",
-  })
-})
 
 async function getData(url) {
   try {
@@ -135,7 +142,7 @@ function start_Injection(bigdata) {
       let difinition = document.getElementById('difinition')
       let private = data.filter((element)=>element.id==cardElement.children[0].getAttribute("id"))
       difinition.children[0].innerHTML=private[0].title
-      difinition.children[1].innerHTML=private[0].riginal_title_romanised
+      difinition.children[1].innerHTML=private[0].original_title_romanised
       difinition.children[2].innerHTML=private[0].release_date
       difinition.children[3].innerHTML=private[0].description
       

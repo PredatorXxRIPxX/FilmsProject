@@ -87,10 +87,10 @@
   }
   
   .show {
+    transition: all .5s ease-in-out;
     flex: 0 0 100%; /* Each slide takes 100% of the slider's width */
     scroll-snap-align: start; /* Ensure each slide snaps to the start */
     width: 100%; /* Fill the entire width of the slide */
-    min-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -204,6 +204,7 @@
     transition: all .5s ease-in-out;
   }
   .containerNew{
+    transition: all .5s ease-in-out;
     opacity: 0;
     position: fixed;
     left: 0%;
